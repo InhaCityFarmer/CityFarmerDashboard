@@ -8,3 +8,8 @@
 6. pip install pandas
 7. pip install json
 8. pip install altair
+9. streamlit run stream.py
+
+
+## 실행 후 페이지
+![stream · Streamlit_cropped_page-0001](https://github.com/InhaCityFarmer/CityFarmerDashboard/assets/93529538/8dad91c3-9621-441a-8c2d-4f80177488e8)
