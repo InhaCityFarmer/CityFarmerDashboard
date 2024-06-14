@@ -12,4 +12,6 @@
 
 
 ## 실행 후 페이지
-![stream · Streamlit_cropped_page-0001](https://github.com/InhaCityFarmer/CityFarmerDashboard/assets/93529538/8dad91c3-9621-441a-8c2d-4f80177488e8)
+<img width="1344" alt="스크린샷 2024-06-12 오후 10 24 09" src="https://github.com/InhaCityFarmer/CitiFarmerDataUpload/assets/93529538/9c8a6486-ff4a-47b2-9f1b-f24b484db4ca">
+
+<img width="1330" alt="스크린샷 2024-06-12 오후 11 06 26" src="https://github.com/InhaCityFarmer/CitiFarmerDataUpload/assets/93529538/d098713e-467b-40d1-9608-86f4d0d67398">
