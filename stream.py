@@ -42,7 +42,7 @@ standard : list = []
 
 #선택된 식물의 정보 db에서 가져옴
 doc_ref = db.collection("User").document("TvAqbRIHDRNqS8GvqmLzFQyLFb93").collection("crop").document(choice)
-#온도, 대기습도, 토양습도 데이터 가져옴
+
 docst = doc_ref.get(field_paths={"t"})
 docsh = doc_ref.get(field_paths={"h"})
 docsm = doc_ref.get(field_paths={"m"})
@@ -56,6 +56,7 @@ vhlist : list = []
 vmlist : list = []
 ttlist : list = []
 #가져온 정보 분리
+
 for t in mapt.values():
     for t2 in t:
         vtlist.append(t2[0:t2.find("*")])
@@ -68,6 +69,7 @@ for m in mapm.values():
         vmlist.append(m2[0:m2.find("*")])
 
 #string으로 되어있는 값을 float으로 변경
+
 vhlist = list(map(float, vhlist))
 vmlist = list(map(float, vmlist))
 vtlist = list(map(float, vtlist))
@@ -82,7 +84,7 @@ st.dataframe(df)
 #시간 정보를 넣은 데이터 프레임 재생성
 df = pd.DataFrame({'대기습도' : vhlist, '토양습도' : vmlist, '온도' : vtlist, '날짜' : ttlist})
 
-#컬럼 1:1:1 비율로 생성
+#컬럼 1:1:1:1 비율로 생성
 col1,col2,col3 = st.columns([1,1,1])
 
 #각 컬럼마다 메트릭 넣음
@@ -140,17 +142,24 @@ line = base.mark_line(
     x='날짜',y="센서값",color="종류"
 )
 
+strokeDash_select = alt.binding_select(
+    options=[[1, 0], [8, 8], [8, 4], [4, 4], [4, 2], [2, 1], [1, 1]]
+)
+strokeDash_var = alt.param(bind=strokeDash_select, value=[8, 8], name="strokeDash")
+
 rule = base.mark_rule().encode(
     y="표준값",
     color="종류",
-    size=alt.value(2)
+    strokeDash= strokeDash_var,
+).add_params(
+    strokeDash_var,
 )
 
-text = line.mark_text(
-    align="left",
-    baseline="top",
-    dx=3
-    ).encode(text="센서값",color=alt.value("black"))
+# text = line.mark_text(
+#     align="left",
+#     baseline="top",
+#     dx=3
+#     ).encode(text="센서값",color=alt.value("black"))
 
 if len(options) != 0:
-    st.altair_chart(line+rule+text ,use_container_width=True)
+    st.altair_chart(line+rule ,use_container_width=True)
